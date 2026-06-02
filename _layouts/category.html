@@ -5,7 +5,7 @@ layout: default
   <h1>{{ page.title | escape }}</h1>
 </div>
 <div class="post-list-wrap">
-  {% assign cat_posts = site.posts | where_exp: "p", "p.categories contains page.category or p.category == page.category" %}
+  {% assign cat_posts = site.posts | where: "category", page.category %}
   {% for post in cat_posts %}
     {% include post-card.html %}
   {% endfor %}
