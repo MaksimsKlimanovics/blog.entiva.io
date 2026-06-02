@@ -44,7 +44,7 @@ AL · C# · TypeScript · PowerShell · SQL · Azure · Microsoft 365 · Entra I
 
 ## Outside Work
 
-When I'm not building software: time with family and dogs, smart-home automation, energy management projects, and custom hardware experiments that are definitely simpler in theory.
+When I'm not building software: time with family and dogs, supporting my wife with gardening, smart-home automation, energy management projects, and custom hardware experiments that are definitely simpler in theory.
 
 ## Philosophy
 
