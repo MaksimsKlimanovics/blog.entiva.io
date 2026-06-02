@@ -255,8 +255,8 @@ img { max-width: 100%; }
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  .prev { color: $text-muted; }
-  .next { color: $primary; font-weight: 500; }
+  a.prev { color: $text-muted; }
+  a.next { color: $primary; font-weight: 500; }
 }
 
 // ── Static page (About) ─────────────────────────────────────────────────────
@@ -305,6 +305,25 @@ img { max-width: 100%; }
     gap: 14px;
     a { color: $text-secondary; &:hover { color: $primary; text-decoration: none; } }
   }
+}
+
+// ── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+  .site-header {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .site-nav { gap: 12px; flex-wrap: wrap; }
+  .hero { padding: 24px 16px 20px; }
+  .post-list-wrap { padding: 16px; }
+  .post-header { padding: 24px 16px 20px; }
+  .post-body { padding: 20px 16px; }
+  .post-title { font-size: 22px; }
+  .page-wrap { padding: 20px 16px; margin: 16px; }
+  .category-header { padding: 16px; }
+  .site-footer { padding: 14px 16px; flex-direction: column; gap: 8px; }
 }
 
 // ── Rouge syntax highlighting (dark theme) ───────────────────────────────────
