@@ -2,7 +2,7 @@
 layout: default
 ---
 <section class="hero">
-  <h1>Hi, I'm Maksims.</h1>
+  <h1>Hi, I'm {{ site.author | escape }}.</h1>
   {{ content }}
   <div class="topic-pills">
     <span class="pill">Business Central</span>
@@ -18,6 +18,6 @@ layout: default
     {% include post-card.html %}
   {% endfor %}
   {% if site.posts.size == 0 %}
-    <p style="color:#94a3b8;padding:12px 0;">No posts yet — check back soon.</p>
+    <p class="empty-state">No posts yet — check back soon.</p>
   {% endif %}
 </div>

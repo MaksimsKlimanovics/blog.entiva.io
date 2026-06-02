@@ -309,6 +309,12 @@ img { max-width: 100%; }
   }
 }
 
+// ── Utilities ───────────────────────────────────────────────────────────────
+.empty-state {
+  color: $text-muted;
+  padding: 12px 0;
+}
+
 // ── Responsive ──────────────────────────────────────────────────────────────
 @media (max-width: 640px) {
   .site-header {

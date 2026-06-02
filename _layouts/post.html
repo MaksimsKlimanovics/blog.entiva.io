@@ -4,13 +4,14 @@ layout: default
 <div class="post-header">
   <div class="post-breadcrumb">
     <a href="{{ '/' | relative_url }}">← All posts</a>
-    {% if page.category and page.category != "" %}
+    {% assign post_cat = page.category | default: page.categories[0] %}
+    {% if post_cat and post_cat != "" %}
       <span class="sep">|</span>
-      {% assign cat_nav = site.data.navigation | where: "slug", page.category | first %}
+      {% assign cat_nav = site.data.navigation | where: "slug", post_cat | first %}
       {% if cat_nav %}
         <span class="pill">{{ cat_nav.title }}</span>
       {% else %}
-        <span class="pill">{{ page.category | replace: "-", " " | capitalize }}</span>
+        <span class="pill">{{ post_cat | replace: "-", " " | capitalize }}</span>
       {% endif %}
     {% endif %}
   </div>
