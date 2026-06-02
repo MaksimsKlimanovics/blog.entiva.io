@@ -1,0 +1,22 @@
+title: Maksims Klimanovičs
+description: Business Central Architect, AI Builder, Consultant
+url: "https://blog.entiva.io"
+author: Maksims Klimanovičs
+github_username: mrfloksis
+linkedin_username: ""
+
+show_excerpts: true
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
