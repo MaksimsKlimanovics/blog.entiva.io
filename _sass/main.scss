@@ -1,0 +1,330 @@
+// ── Variables ──────────────────────────────────────────────────────────────
+$primary:        #2563eb;
+$primary-light:  #eff6ff;
+$bg:             #f8fafc;
+$surface:        #ffffff;
+$text-primary:   #0f172a;
+$text-secondary: #475569;
+$text-body:      #334155;
+$text-muted:     #94a3b8;
+$border:         #e2e8f0;
+$code-bg:        #0f172a;
+$font:           system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+// ── Reset ───────────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: $font;
+  font-size: 15px;
+  line-height: 1.8;
+  background: $bg;
+  color: $text-body;
+}
+a { color: $primary; text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; }
+
+// ── Header ──────────────────────────────────────────────────────────────────
+.site-header {
+  background: $surface;
+  border-bottom: 1px solid $border;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-brand a { text-decoration: none; }
+.site-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: $text-primary;
+  line-height: 1.1;
+}
+.site-tagline {
+  font-size: 10px;
+  color: $text-muted;
+  margin-top: 2px;
+}
+.site-nav {
+  display: flex;
+  gap: 20px;
+  a {
+    font-size: 13px;
+    color: $text-secondary;
+    &:hover { color: $primary; text-decoration: none; }
+    &.active { color: $primary; font-weight: 600; }
+  }
+}
+
+// ── Hero ────────────────────────────────────────────────────────────────────
+.hero {
+  background: $surface;
+  border-bottom: 1px solid $border;
+  padding: 32px 32px 28px;
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.3;
+    margin: 0 0 10px;
+  }
+  p {
+    font-size: 14px;
+    color: $text-secondary;
+    line-height: 1.7;
+    margin: 0 0 16px;
+    max-width: 600px;
+  }
+}
+.topic-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+// ── Pills ───────────────────────────────────────────────────────────────────
+.pill {
+  background: $primary-light;
+  color: $primary;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pill-grey {
+  background: #f1f5f9;
+  color: $text-secondary;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+// ── Post list ───────────────────────────────────────────────────────────────
+.post-list-wrap {
+  padding: 24px 32px;
+  max-width: 752px;
+}
+.section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $text-muted;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.post-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 12px;
+  border-left: 3px solid $primary;
+  transition: box-shadow 0.15s;
+  &:hover { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07); }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: $text-muted;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 6px;
+    a {
+      color: $text-primary;
+      &:hover { color: $primary; text-decoration: none; }
+    }
+  }
+  p {
+    font-size: 13px;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ── Post page ───────────────────────────────────────────────────────────────
+.post-header {
+  background: $surface;
+  border-bottom: 1px solid $border;
+  padding: 32px 32px 28px;
+}
+.post-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  .sep { color: $border; }
+  a { color: $primary; }
+}
+.post-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: $text-primary;
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+.post-dateline {
+  font-size: 12px;
+  color: $text-muted;
+}
+.post-body {
+  padding: 28px 32px;
+  max-width: 720px;
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 28px 0 12px;
+    padding-left: 12px;
+    border-left: 3px solid $primary;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 22px 0 8px;
+  }
+  p { margin: 0 0 18px; }
+  ul, ol { padding-left: 24px; margin: 0 0 18px; }
+  li { margin-bottom: 4px; }
+  blockquote {
+    border-left: 3px solid $primary;
+    margin: 18px 0;
+    padding: 4px 0 4px 16px;
+    color: $text-secondary;
+    font-style: italic;
+    p { margin: 0; }
+  }
+  // Inline code
+  code {
+    background: #f1f5f9;
+    color: $text-primary;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+  // Fenced code blocks (Rouge wraps output in .highlight)
+  .highlight {
+    background: $code-bg;
+    border-radius: 6px;
+    margin: 18px 0;
+    overflow-x: auto;
+    pre {
+      margin: 0;
+      padding: 16px;
+      background: transparent;
+    }
+    code {
+      background: transparent;
+      color: #e2e8f0;
+      font-size: 12px;
+      padding: 0;
+    }
+  }
+}
+.post-tags {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tags-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.post-nav {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid $border;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  .prev { color: $text-muted; }
+  .next { color: $primary; font-weight: 500; }
+}
+
+// ── Static page (About) ─────────────────────────────────────────────────────
+.page-wrap {
+  padding: 32px;
+  max-width: 720px;
+  margin: 24px auto;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 8px;
+  h1 { font-size: 24px; font-weight: 700; color: $text-primary; margin: 0 0 20px; }
+  h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 24px 0 10px;
+    padding-left: 12px;
+    border-left: 3px solid $primary;
+  }
+  ul { padding-left: 20px; margin: 0 0 16px; }
+  li { margin-bottom: 4px; }
+  p { margin: 0 0 16px; }
+}
+
+// ── Category page ───────────────────────────────────────────────────────────
+.category-header {
+  background: $surface;
+  border-bottom: 1px solid $border;
+  padding: 24px 32px;
+  h1 { font-size: 22px; font-weight: 700; color: $text-primary; margin: 0; }
+}
+
+// ── Footer ──────────────────────────────────────────────────────────────────
+.site-footer {
+  border-top: 1px solid $border;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $surface;
+  font-size: 11px;
+  color: $text-muted;
+  margin-top: 40px;
+  .footer-links {
+    display: flex;
+    gap: 14px;
+    a { color: $text-secondary; &:hover { color: $primary; text-decoration: none; } }
+  }
+}
+
+// ── Rouge syntax highlighting (dark theme) ───────────────────────────────────
+.highlight .k,  .highlight .kd, .highlight .kn,
+.highlight .kp, .highlight .kr, .highlight .kt { color: #7dd3fc; }
+.highlight .s,  .highlight .s2, .highlight .s1,
+.highlight .sb, .highlight .sc, .highlight .sd,
+.highlight .se, .highlight .si, .highlight .sx  { color: #86efac; }
+.highlight .c,  .highlight .c1, .highlight .cm,
+.highlight .cs, .highlight .cp                  { color: #64748b; font-style: italic; }
+.highlight .nf, .highlight .fm                  { color: #a5f3fc; }
+.highlight .nb, .highlight .bp                  { color: #fca5a5; }
+.highlight .nc, .highlight .nn                  { color: #fde68a; }
+.highlight .mi, .highlight .mf,
+.highlight .mh, .highlight .mo                  { color: #fcd34d; }
+.highlight .o,  .highlight .ow                  { color: #94a3b8; }
+.highlight .na                                  { color: #c4b5fd; }
+.highlight .n,  .highlight .no                  { color: #e2e8f0; }
+.highlight .p                                   { color: #94a3b8; }
+.highlight .nt                                  { color: #7dd3fc; }
+.highlight .nv, .highlight .vc,
+.highlight .vg, .highlight .vi                  { color: #fde68a; }
+.highlight .err { color: #fca5a5; background: transparent; }
