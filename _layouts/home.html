@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<section class="hero">
+  <h1>Hi, I'm Maksims.</h1>
+  {{ content }}
+  <div class="topic-pills">
+    <span class="pill">Business Central</span>
+    <span class="pill">AL Development</span>
+    <span class="pill">AI &amp; Copilot</span>
+    <span class="pill">Azure</span>
+    <span class="pill">Architecture</span>
+  </div>
+</section>
+<div class="post-list-wrap">
+  <div class="section-label">Latest Posts</div>
+  {% for post in site.posts %}
+    {% include post-card.html %}
+  {% endfor %}
+  {% if site.posts.size == 0 %}
+    <p style="color:#94a3b8;padding:12px 0;">No posts yet — check back soon.</p>
+  {% endif %}
+</div>
