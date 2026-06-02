@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="header-brand">
+    <a href="{{ '/' | relative_url }}">
+      <div class="site-title">{{ site.author }}</div>
+      <div class="site-tagline">Business Central · AI · Architecture</div>
+    </a>
+  </div>
+  <nav class="site-nav">
+    <a href="{{ '/' | relative_url }}"
+       {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+    {% for item in site.data.navigation %}
+      <a href="{{ item.url | relative_url }}"
+         {% if page.url contains item.url %}class="active"{% endif %}>{{ item.title }}</a>
+    {% endfor %}
+    <a href="{{ '/about/' | relative_url }}"
+       {% if page.url == "/about/" %}class="active"{% endif %}>About</a>
+  </nav>
+</header>
