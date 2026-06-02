@@ -1,6 +1,9 @@
 - title: Business Central
   url: /category/business-central/
+  slug: business-central
 - title: AI & Copilot
   url: /category/ai-copilot/
+  slug: ai-copilot
 - title: Architecture
   url: /category/architecture/
+  slug: architecture

@@ -39,12 +39,14 @@ img { max-width: 100%; }
 }
 .header-brand a { text-decoration: none; }
 .site-title {
+  display: block;
   font-size: 15px;
   font-weight: 700;
   color: $text-primary;
   line-height: 1.1;
 }
 .site-tagline {
+  display: block;
   font-size: 10px;
   color: $text-muted;
   margin-top: 2px;

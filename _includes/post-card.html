@@ -1,16 +1,21 @@
 <article class="post-card">
   <div class="post-meta">
-    {% if post.category != "" %}
-      <span class="pill">{{ post.category | replace: "-", " " | capitalize }}</span>
+    {% if post.category and post.category != "" %}
+      {% assign cat_nav = site.data.navigation | where: "slug", post.category | first %}
+      {% if cat_nav %}
+        <span class="pill">{{ cat_nav.title }}</span>
+      {% else %}
+        <span class="pill">{{ post.category | replace: "-", " " | capitalize }}</span>
+      {% endif %}
     {% endif %}
     <span>{{ post.date | date: "%-d %b %Y" }}</span>
     <span>·</span>
     {% assign read_time = post.content | number_of_words | divided_by: 200 | at_least: 1 %}
     <span>{{ read_time }} min read</span>
   </div>
-  <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+  <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
   {% if post.description %}
-    <p>{{ post.description }}</p>
+    <p>{{ post.description | strip_html }}</p>
   {% elsif post.excerpt %}
     <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
   {% endif %}
