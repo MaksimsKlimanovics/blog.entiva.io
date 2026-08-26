@@ -17,7 +17,7 @@ Echo is a side project about music. Except it turned into one of the more intere
 
 That line is in the README. I didn't soften it for the blog. It's the whole thesis.
 
-![Echo's entrance screen: "Music for where you are — and where you want to go," over a dusk lake photo](/assets/images/echo/screen-entrance.webp)
+![Echo's entrance screen: "Music for where you are — and where you want to go," over a dusk lake photo](/assets/images/echo/shot-entrance.webp)
 *Echo's actual entrance screen. "Every journey begins somewhere."*
 
 ---
@@ -40,7 +40,7 @@ The output isn't a playlist. It's a **Journey** — an ordered, six-act emotiona
 
 There are three doors in: **Journey** ("tell me where you are"), **Dream** ("tell me what you see"), **Memory** ("tell me where you want to return"). No genre picker anywhere near the entrance.
 
-![Echo's three-doors screen: "Where do we begin?" with Journey, Dream, and Memory as the options](/assets/images/echo/screen-doors.webp)
+![Echo's three-doors screen: "Where do we begin?" with Journey, Dream, and Memory as the options](/assets/images/echo/shot-doors.webp)
 *"Where do we begin?" No fourth door, no genre picker hiding behind it.*
 
 ---
@@ -69,7 +69,7 @@ There's also a rule I'm oddly proud of, straight out of the product bible:
 
 The wildcard slot exists for exactly one reason: the moment someone thinks *"how did it know I needed this?"* That's not a metaphor, it's a literal tier in the scoring code (`TIER_SLOT_OVERRIDES`), landing at 68.75/25/6.25 in the actual implementation — inside spec, deterministic, no `Math.random` anywhere. Reproducible weirdness. My favorite kind.
 
-![Echo's Musical DNA screen: "Give me five songs you would hate to lose," with anchor tracks listed](/assets/images/echo/screen-dna.webp)
+![Echo's Musical DNA screen: "Give me five songs you would hate to lose," with anchor tracks listed](/assets/images/echo/shot-dna.webp)
 *Musical DNA onboarding. Anchor tracks, not a genre checklist — mine currently reads Korn, Disturbed, TesseracT, Lorna Shore, Whitechapel.*
 
 ---
@@ -147,5 +147,5 @@ You can try it yourself at [echoes-app.xyz](https://echoes-app.xyz). It builds p
 
 A quick credits line, because it feels dishonest not to include one on a post about AI-built things: Echo's visual design was made with Claude Design, and its background imagery was generated with GPT-5, styled around my Finnish Lapphund, Lorna.
 
-![Lorna, a four-month-old Finnish Lapphund puppy, sitting on a sandy lakeshore](/assets/images/echo/lorna.jpg)
+![Lorna, a four-month-old Finnish Lapphund puppy, sitting on a sandy lakeshore](/assets/images/echo/lorna-photo.jpg)
 *The real Lorna. Four months old, named after Lorna Shore — my favorite band, and, purely by coincidence of good taste, one that made it into Echo's own catalog three separate times (`lorna-pain-1`, `lorna-pain-3`, `lorna-hellfire`, tagged `grief`, `climax`, and `cathartic` respectively). She did not review those pull requests. I checked.*
