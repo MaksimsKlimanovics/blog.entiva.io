@@ -130,4 +130,8 @@ That's not "AI replaced the developer." That's a very good pair of hands that al
 
 I'll still keep my debugger open. Echo just gave it slightly better company.
 
-You can find the code at [github.com/MaksimsKlimanovics/Echo](https://github.com/MaksimsKlimanovics/Echo). It builds paths through music. It does not, on principle, ask what genre you're in the mood for.
+You can try it yourself at [echoes-app.xyz](https://echoes-app.xyz). It builds paths through music. It does not, on principle, ask what genre you're in the mood for.
+
+---
+
+A quick credits line, because it feels dishonest not to include one on a post about AI-built things: the visual design was made with Claude Design, and the background imagery throughout the app was generated with GPT-5 — with my Finnish Lapphund, Lorna, quietly present in the background of it.
