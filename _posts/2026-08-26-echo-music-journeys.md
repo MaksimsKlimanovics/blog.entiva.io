@@ -17,6 +17,9 @@ Echo is a side project about music. Except it turned into one of the more intere
 
 That line is in the README. I didn't soften it for the blog. It's the whole thesis.
 
+![Echo's entrance screen: two dogs on a rock at a misty lake at dusk, facing snow-capped mountains](/assets/images/echo/bg-entrance.jpg)
+*"Every journey begins somewhere." Echo's entrance screen — and yes, that's Lorna.*
+
 ---
 
 # The Itch
@@ -34,6 +37,11 @@ So Echo asks three different questions instead:
 3. **Where do you want to go?** — stay here, go deeper, release it, escape, rise, find peace, or just don't tell me and let the system carry you.
 
 The output isn't a playlist. It's a **Journey** — an ordered, six-act emotional arc, built from those three coordinates, with the order itself being part of the recommendation.
+
+There are three doors in: **Journey** ("tell me where you are"), **Dream** ("tell me what you see"), **Memory** ("tell me where you want to return"). No genre picker anywhere near the entrance.
+
+![Lorna standing alone at the edge of a still lake at dusk](/assets/images/echo/bg-doors.jpg)
+*"Where do we begin?" — Journey, Dream, or Memory. Lorna picked the shoreline.*
 
 ---
 
@@ -60,6 +68,9 @@ There's also a rule I'm oddly proud of, straight out of the product bible:
 - 5–10% wildcard
 
 The wildcard slot exists for exactly one reason: the moment someone thinks *"how did it know I needed this?"* That's not a metaphor, it's a literal tier in the scoring code (`TIER_SLOT_OVERRIDES`), landing at 68.75/25/6.25 in the actual implementation — inside spec, deterministic, no `Math.random` anywhere. Reproducible weirdness. My favorite kind.
+
+![Lorna walking away into a foggy pine forest](/assets/images/echo/bg-dna.jpg)
+*Musical DNA collection: atmosphere, build, silence, weight, voice. Genre is the least interesting dimension.*
 
 ---
 
@@ -134,4 +145,4 @@ You can try it yourself at [echoes-app.xyz](https://echoes-app.xyz). It builds p
 
 ---
 
-A quick credits line, because it feels dishonest not to include one on a post about AI-built things: the visual design was made with Claude Design, and the background imagery throughout the app was generated with GPT-5 — with my Finnish Lapphund, Lorna, quietly present in the background of it.
+A quick credits line, because it feels dishonest not to include one on a post about AI-built things: Echo's visual design was made with Claude Design, and every background image in the app — including the three in this post — was generated with GPT-5, styled around my Finnish Lapphund, Lorna.
