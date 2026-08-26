@@ -145,4 +145,4 @@ You can try it yourself at [echoes-app.xyz](https://echoes-app.xyz). It builds p
 
 ---
 
-A quick credits line, because it feels dishonest not to include one on a post about AI-built things: Echo's visual design was made with Claude Design, and every background image in the app — including the three in this post — was generated with GPT-5, styled around my Finnish Lapphund, Lorna.
+A quick credits line, because it feels dishonest not to include one on a post about AI-built things: Echo's visual design was made with Claude Design, and every background image in the app — including the three in this post — was generated with GPT-5, styled around my Finnish Lapphund, Lorna. Four months old, named after Lorna Shore — my favorite band, and, purely by coincidence of good taste, one that made it into Echo's own catalog three separate times (`lorna-pain-1`, `lorna-pain-3`, `lorna-hellfire`, tagged `grief`, `climax`, and `cathartic` respectively). She did not review those pull requests. I checked.
