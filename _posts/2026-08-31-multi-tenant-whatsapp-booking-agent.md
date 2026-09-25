@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false
 title: "The Model Doesn't Own the Booking: A Multi-Tenant WhatsApp Agent That Isn't Allowed to Lie"
 description: "Wiring WhatsApp, Twilio, Microsoft Foundry and a stateful booking API into one Laravel control plane — and why the AI is the least trusted component in the system."
 date: 2026-08-31
