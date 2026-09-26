@@ -125,7 +125,7 @@ Look at what a tool loop actually sends. Every round trip repeats the same syste
 
 So I added Anthropic prompt caching, marking the stable part of the request as cacheable so later rounds reuse it instead of processing it from scratch. [Anthropic's prompt caching documentation](https://platform.claude.com/docs/en/build-with-claude/prompt-caching).
 
-The result was exactly what the documentation promises and slightly less common than it should be: responses got faster and runs got cheaper. Cache reads are billed at a fraction of the normal input price, and the unchanged prefix no longer has to be processed from scratch on every tool round.
+The result was exactly what the documentation promises and slightly less common than it should be: responses got faster, and the cost of a run dropped by about 37% — more than a third, for what is essentially a few extra fields in the request. Cache reads are billed at a fraction of the normal input price, and the unchanged prefix no longer has to be processed from scratch on every tool round.
 
 The only design discipline it requires is keeping the prefix stable. Anything that changes per run — the vehicle, the findings, the tool results — belongs after the cached content, not inside it. A timestamp in the system prompt is a very efficient way to cache nothing.
 
@@ -264,7 +264,7 @@ This is a progress report, not a launch announcement. Besides the acceptance tes
 - **Own the tool loop if you need to debug it.** A direct client with real status codes beats a wrapper that returns zero and silence.
 - **Put domain vocabulary in the tools, not only in the prompt.** Deterministic, configurable matching is testable and explainable.
 - **Cache metered data per run.** Retrying with different wording should not mean paying again.
-- **Turn on prompt caching from day one.** A tool loop resends the same prefix every round; there is no prize for paying for it repeatedly.
+- **Turn on prompt caching from day one.** A tool loop resends the same prefix every round; in my case, caching it cut the cost of a run by more than a third.
 - **Keep the write path free of AI.** Revalidate, write in one transaction, and let a human press the button.
 
 For me, the useful engineering work is being able to trace a proposal all the way back: the inspection finding, the data returned by the tools, the matching operation, the selected part, and the checks performed before insertion. When a brake job becomes a manual group, I want to see why. When the agent selects a part, I want to know what supported that selection.
