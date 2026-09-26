@@ -63,7 +63,7 @@ Existing GMS routines still calculate document prices and insert service package
 
 The shape of the solution is simple. Getting it to behave was not. I ran into problems at several levels: the core AI integration did not accept the selected model's request parameters, the automated vehicle lookup behaved differently from the interactive page, and search results quietly omitted data the agent needed. The rest of this post follows those problems in the order they bit.
 
-> **Status, so nobody is misled:** the development snapshot is 25 September 2026. The Anthropic integration is committed on its feature branch; the latest synonym-aware provider search changes are still working-tree changes. This is an engineering account of the implementation, with live acceptance testing still to complete.
+> **Status, so nobody is misled:** the development snapshot is 25 September 2026. The Anthropic integration is committed on its feature branch; the latest synonym-aware provider search changes are still working-tree changes. This is an engineering account of work in progress, with live acceptance testing, online parts catalogues and unattended batch generation still to come.
 
 ## Problem 1: the model call failed, and told me nothing
 
@@ -116,6 +116,18 @@ A tool result needs its corresponding request in the conversation. In the origin
 The direct client also exposes HTTP status and provider error text — a refreshing change from status zero. The setup connection test uses that same client, which makes it a relevant diagnostic for the actual feature path rather than a test of something adjacent.
 
 Business Central still provides the PromptDialog, capability activation, GMS entitlement checks and advisor review. Estimate Builder customer descriptions use the new connection, while the existing standalone VI Estimate Sales Descriptions feature keeps its original provider.
+
+## Prompt caching: I did not start with it, and I should have
+
+The first version of the Claude client had no prompt caching. It worked, and it was also quietly wasteful.
+
+Look at what a tool loop actually sends. Every round trip repeats the same system prompt, the same tool definitions and the growing conversation history, only to append one more tool result at the end. A single estimate can take many rounds: packages, vehicle history, provider categories, operations, next page, stock. The model was re-reading the same large, unchanged prefix on every turn, and I was paying full input price for the privilege of it doing so.
+
+So I added Anthropic prompt caching, marking the stable part of the request as cacheable so later rounds reuse it instead of processing it from scratch. [Anthropic's prompt caching documentation](https://platform.claude.com/docs/en/build-with-claude/prompt-caching).
+
+The result was exactly what the documentation promises and slightly less common than it should be: responses got faster and runs got cheaper. Cache reads are billed at a fraction of the normal input price, and the unchanged prefix no longer has to be processed from scratch on every tool round.
+
+The only design discipline it requires is keeping the prefix stable. Anything that changes per run — the vehicle, the findings, the tool results — belongs after the cached content, not inside it. A timestamp in the system prompt is a very efficient way to cache nothing.
 
 ## Problem 2: the provider lookup worked in the page, but not through the tool
 
@@ -210,7 +222,7 @@ That lets me check whether a failure came from vehicle resolution, entitlements,
 
 The newest search telemetry records counts, paging and cache information without VIN, registration or customer data. Detailed tool history has a different purpose and can contain inspection or provider-error content, so it should not be mistaken for anonymous telemetry.
 
-Optional web search is also bounded. The branch exposes an Anthropic server-side search tool with a use limit and a domain allowlist. The prompt treats web material as supporting research and prohibits sending vehicle identifiers to unrestricted web search. A public search result cannot establish a fitted part, an applicable labour time or an inspected fault. Dedicated licensed catalogue integrations remain a separate capability.
+Optional web search is also bounded. The branch exposes an Anthropic server-side search tool with a use limit and a domain allowlist. The prompt treats web material as supporting research and prohibits sending vehicle identifiers to unrestricted web search. A public search result cannot establish a fitted part, an applicable labour time or an inspected fault. Dedicated licensed catalogue integrations remain a separate capability, and they are next on the list.
 
 ## The final write is separate, validated and boring — on purpose
 
@@ -238,6 +250,13 @@ Along the way I also hit a perfectly ordinary Business Central deployment issue:
 
 The source includes tests for proposal validation and the provider contract, plus new cases for synonym matching, action and position mismatches, categories beyond the old limit, paging without gaps or duplicates, cache isolation and repeatable seeding. Earlier development recorded successful app and test compilation. Live provider, UI and end-to-end acceptance checks remain separate work; this post does not claim the latest changes have passed them.
 
+## It is not finished
+
+This is a progress report, not a launch announcement. Besides the acceptance testing above, two larger pieces are planned:
+
+- **Online parts catalogues.** Today, parts come from local stock and the vehicle data provider's associated parts, with bounded web search as supporting research only. Integrating online parts catalogues should give the agent real part numbers, fitment data and supplier availability, instead of a similar-looking description and a hopeful attitude.
+- **Batch jobs without user interaction.** At the moment, an advisor opens the Estimate Builder and waits for it. The next step is running generation in the background — for example, from a job queue once an inspection is completed — so proposals are already prepared when the advisor opens the estimate. That also removes the one safeguard the current design leans on most: a human watching the run. Tool history, budgets and validation matter even more when nobody is there to notice the agent searching for brake discs for the eleventh time.
+
 ## What I would tell someone building the same thing
 
 - **Check what the tool returned before blaming the model.** Two of my "AI problems" were a vehicle-resolution bug and a truncated response.
@@ -245,8 +264,9 @@ The source includes tests for proposal validation and the provider contract, plu
 - **Own the tool loop if you need to debug it.** A direct client with real status codes beats a wrapper that returns zero and silence.
 - **Put domain vocabulary in the tools, not only in the prompt.** Deterministic, configurable matching is testable and explainable.
 - **Cache metered data per run.** Retrying with different wording should not mean paying again.
+- **Turn on prompt caching from day one.** A tool loop resends the same prefix every round; there is no prize for paying for it repeatedly.
 - **Keep the write path free of AI.** Revalidate, write in one transaction, and let a human press the button.
 
 For me, the useful engineering work is being able to trace a proposal all the way back: the inspection finding, the data returned by the tools, the matching operation, the selected part, and the checks performed before insertion. When a brake job becomes a manual group, I want to see why. When the agent selects a part, I want to know what supported that selection.
 
-That is the standard I am working towards: a service advisor can review the proposed estimate, and a developer can explain how the system produced it. The remaining runtime checks need to confirm that the complete workflow behaves that way with real workshop data — not just plausibly.
+That is the standard I am working towards: a service advisor can review the proposed estimate, and a developer can explain how the system produced it. It is not there yet. The remaining runtime checks, the catalogue integrations and the unattended runs all need to show that the complete workflow behaves that way with real workshop data — not just plausibly.
